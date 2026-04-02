@@ -110,7 +110,7 @@ export function IncidentTable({ incidents, onStatusChange, onDelete, newIncident
               </TableCell>
               <TableCell>
                 <Badge className={`${severityColors[incident.severity]} cursor-default border`}>
-                  {incident.severity?.charAt(0).toUpperCase() + incident.severity?.slice(1)}
+                  {incident.severity ? `${incident.severity.charAt(0).toUpperCase()}${incident.severity.slice(1)}` : ''}
                 </Badge>
               </TableCell>
               <TableCell>
@@ -125,7 +125,7 @@ export function IncidentTable({ incidents, onStatusChange, onDelete, newIncident
                   <SelectTrigger className="w-auto h-8 cursor-pointer">
                     <SelectValue>
                       <Badge className={`${statusColors[incident.status]} cursor-default border text-xs`}>
-                        {incident.status?.charAt(0).toUpperCase() + incident.status?.slice(1)}
+                        {incident.status ? `${incident.status.charAt(0).toUpperCase()}${incident.status.slice(1)}` : ''}
                       </Badge>
                     </SelectValue>
                   </SelectTrigger>
@@ -221,7 +221,7 @@ export function IncidentTable({ incidents, onStatusChange, onDelete, newIncident
                 <label className="text-sm font-medium text-muted-foreground">Severity</label>
                 <div className="mt-1">
                   <Badge className={`${severityColors[detailIncident.severity]} cursor-default border`}>
-                    {detailIncident.severity?.charAt(0).toUpperCase() + detailIncident.severity?.slice(1)}
+                    {detailIncident.severity ? `${detailIncident.severity.charAt(0).toUpperCase()}${detailIncident.severity.slice(1)}` : ''}
                   </Badge>
                 </div>
               </div>
@@ -231,7 +231,7 @@ export function IncidentTable({ incidents, onStatusChange, onDelete, newIncident
                 <label className="text-sm font-medium text-muted-foreground">Status</label>
                 <div className="mt-1">
                   <Badge className={`${statusColors[detailIncident.status]} cursor-default border`}>
-                    {detailIncident.status?.charAt(0).toUpperCase() + detailIncident.status?.slice(1)}
+                    {detailIncident.status ? `${detailIncident.status.charAt(0).toUpperCase()}${detailIncident.status.slice(1)}` : ''}
                   </Badge>
                 </div>
               </div>
