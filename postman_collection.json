@@ -1,0 +1,384 @@
+{
+  "info": {
+    "name": "Incident Management API",
+    "description": "Complete API collection for Incident Management Dashboard with all CRUD operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "incidentId",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Incidents",
+      "item": [
+        {
+          "name": "Create Incident - Critical",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201 || pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.collectionVariables.set('incidentId', jsonData.id);",
+                  "    pm.test('Incident created successfully', function () {",
+                  "        pm.expect(jsonData).to.have.property('id');",
+                  "    });",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Auth Service Down\",\n  \"description\": \"Users cannot login to the system. Authentication service is not responding.\",\n  \"service\": \"Auth Service\",\n  \"severity\": \"critical\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"]
+            },
+            "description": "Create a new critical incident"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Incident - High",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Database timeout on payment service\",\n  \"description\": \"Users are receiving timeout errors during checkout. Database queries taking more than 30 seconds.\",\n  \"service\": \"Payment API\",\n  \"severity\": \"high\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"]
+            },
+            "description": "Create a high severity incident"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Incident - Medium",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Slow notification delivery\",\n  \"description\": \"Email notifications are delayed by 5 minutes on average.\",\n  \"service\": \"Notification Worker\",\n  \"severity\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"]
+            },
+            "description": "Create a medium severity incident"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Incidents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"]
+            },
+            "description": "Get all incidents with default pagination (page=1, limit=10)"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incidents - Paginated",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents?page=1&limit=5",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "5"
+                }
+              ]
+            },
+            "description": "Get incidents with custom pagination"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incidents - Filter by Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents?status=open",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "open",
+                  "description": "open | investigating | resolved"
+                }
+              ]
+            },
+            "description": "Get incidents filtered by status"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incidents - Filter by Severity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents?severity=critical",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"],
+              "query": [
+                {
+                  "key": "severity",
+                  "value": "critical",
+                  "description": "low | medium | high | critical"
+                }
+              ]
+            },
+            "description": "Get incidents filtered by severity"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incidents - Filter by Service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents?service=Payment API",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"],
+              "query": [
+                {
+                  "key": "service",
+                  "value": "Payment API"
+                }
+              ]
+            },
+            "description": "Get incidents filtered by service name"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incidents - Multiple Filters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents?page=1&limit=10&status=open&severity=high",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                },
+                {
+                  "key": "status",
+                  "value": "open"
+                },
+                {
+                  "key": "severity",
+                  "value": "high"
+                }
+              ]
+            },
+            "description": "Get incidents with multiple filters combined"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Incident by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Get a single incident by ID"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Incident - Status to Investigating",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"investigating\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Update incident status to investigating"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Incident - Status to Resolved",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Update incident status to resolved"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Incident - Change Severity",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"severity\": \"medium\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Update incident severity"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Incident - Multiple Fields",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"resolved\",\n  \"severity\": \"low\",\n  \"description\": \"Issue has been resolved. Root cause was identified and fixed.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Update multiple fields of an incident"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Incident",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/incidents/{{incidentId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["incidents", "{{incidentId}}"]
+            },
+            "description": "Delete an incident by ID"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "item": [
+        {
+          "name": "API Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            },
+            "description": "Check if API is running"
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
+
