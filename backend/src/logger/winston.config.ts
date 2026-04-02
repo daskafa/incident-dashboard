@@ -4,7 +4,6 @@ import DailyRotateFile from 'winston-daily-rotate-file';
 
 export const winstonConfig = WinstonModule.createLogger({
   transports: [
-    // Console transport
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.timestamp(),
@@ -14,7 +13,6 @@ export const winstonConfig = WinstonModule.createLogger({
         }),
       ),
     }),
-    // Error log file
     new DailyRotateFile({
       filename: 'logs/error-%DATE%.log',
       datePattern: 'YYYY-MM-DD',
@@ -25,7 +23,6 @@ export const winstonConfig = WinstonModule.createLogger({
         winston.format.json(),
       ),
     }),
-    // Combined log file
     new DailyRotateFile({
       filename: 'logs/combined-%DATE%.log',
       datePattern: 'YYYY-MM-DD',

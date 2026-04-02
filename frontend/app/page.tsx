@@ -30,19 +30,12 @@ export default function Home() {
     setSocket(newSocket);
 
     newSocket.on('incident:created', (incident: Incident) => {
-      console.log('Socket incident received:', incident.id);
-      console.log('Is creating flag:', isCreatingRef.current);
-      
       setIncidents((prev) => [incident, ...prev]);
       setTotal((prev) => prev + 1);
       
-      // Eğer şu anda biz bir incident oluşturuyorsak, animasyon yapma
       if (!isCreatingRef.current) {
-        console.log('Different user - showing animation');
         setNewIncidentId(incident.id);
         setTimeout(() => setNewIncidentId(null), 3000);
-      } else {
-        console.log('My own incident - no animation');
       }
     });
 
@@ -84,11 +77,8 @@ export default function Home() {
 
   const handleCreateIncident = async (data: CreateIncidentDto) => {
     isCreatingRef.current = true;
-    console.log('Starting to create incident, flag set to true');
-    
     try {
       const newIncident = await api.createIncident(data);
-      console.log('Created incident ID:', newIncident.id);
       
       toast.success('Incident created successfully');
       if (page !== 1) {
@@ -97,7 +87,6 @@ export default function Home() {
         loadIncidents();
       }
       
-      // 2 saniye sonra flag'i temizle
       setTimeout(() => {
         isCreatingRef.current = false;
         console.log('Create flag cleared');
