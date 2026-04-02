@@ -1,22 +1,11 @@
 {
   "info": {
+    "_postman_id": "b9ca9fa1-3e72-47cd-8568-882d150ca49a",
     "name": "Incident Management API",
     "description": "Complete API collection for Incident Management Dashboard with all CRUD operations",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "version": "1.0.0"
+    "_exporter_id": "50279284"
   },
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "http://localhost:3001",
-      "type": "string"
-    },
-    {
-      "key": "incidentId",
-      "value": "",
-      "type": "string"
-    }
-  ],
   "item": [
     {
       "name": "Incidents",
@@ -35,7 +24,10 @@
                   "        pm.expect(jsonData).to.have.property('id');",
                   "    });",
                   "}"
-                ]
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
               }
             }
           ],
@@ -49,12 +41,16 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Auth Service Down\",\n  \"description\": \"Users cannot login to the system. Authentication service is not responding.\",\n  \"service\": \"Auth Service\",\n  \"severity\": \"critical\"\n}"
+              "raw": "{\n  \"title\": \"Auth Service Down\",\n  \"description\": \"Users cannot login to the system. Authentication service is not respondings.\",\n  \"service\": \"Auth Service\",\n  \"severity\": \"critical\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/incidents",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ]
             },
             "description": "Create a new critical incident"
           },
@@ -76,8 +72,12 @@
             },
             "url": {
               "raw": "{{baseUrl}}/incidents",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ]
             },
             "description": "Create a high severity incident"
           },
@@ -99,8 +99,12 @@
             },
             "url": {
               "raw": "{{baseUrl}}/incidents",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ]
             },
             "description": "Create a medium severity incident"
           },
@@ -113,8 +117,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ]
             },
             "description": "Get all incidents with default pagination (page=1, limit=10)"
           },
@@ -127,8 +135,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents?page=1&limit=5",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -151,8 +163,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents?status=open",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ],
               "query": [
                 {
                   "key": "status",
@@ -172,8 +188,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents?severity=critical",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ],
               "query": [
                 {
                   "key": "severity",
@@ -193,8 +213,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents?service=Payment API",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ],
               "query": [
                 {
                   "key": "service",
@@ -213,8 +237,12 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents?page=1&limit=10&status=open&severity=high",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents"],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents"
+              ],
               "query": [
                 {
                   "key": "page",
@@ -245,8 +273,13 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Get a single incident by ID"
           },
@@ -268,8 +301,13 @@
             },
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Update incident status to investigating"
           },
@@ -291,8 +329,13 @@
             },
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Update incident status to resolved"
           },
@@ -310,12 +353,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"severity\": \"medium\"\n}"
+              "raw": "{\n  \"severity\": \"high\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Update incident severity"
           },
@@ -333,12 +381,17 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"status\": \"resolved\",\n  \"severity\": \"low\",\n  \"description\": \"Issue has been resolved. Root cause was identified and fixed.\"\n}"
+              "raw": "{\n  \"status\": \"resolved\",\n  \"severity\": \"medium\",\n  \"description\": \"Issue has been resolved. Root cause was identified and fixed.\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Update multiple fields of an incident"
           },
@@ -351,8 +404,13 @@
             "header": [],
             "url": {
               "raw": "{{baseUrl}}/incidents/{{incidentId}}",
-              "host": ["{{baseUrl}}"],
-              "path": ["incidents", "{{incidentId}}"]
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "incidents",
+                "{{incidentId}}"
+              ]
             },
             "description": "Delete an incident by ID"
           },
@@ -369,9 +427,10 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{baseUrl}}/",
-              "host": ["{{baseUrl}}"],
-              "path": [""]
+              "raw": "{{baseUrl}}",
+              "host": [
+                "{{baseUrl}}"
+              ]
             },
             "description": "Check if API is running"
           },
@@ -379,6 +438,17 @@
         }
       ]
     }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "incidentId",
+      "value": "",
+      "type": "string"
+    }
   ]
 }
-

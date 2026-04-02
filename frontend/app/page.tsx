@@ -154,7 +154,14 @@ export default function Home() {
           ) : incidents.length === 0 ? (
             <div className="text-center py-16 border-2 border-dashed rounded-lg">
               <AlertCircle className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-              <p className="text-muted-foreground text-lg">No incidents found. Create one to get started!</p>
+              <p className="text-muted-foreground text-lg mb-6">No incidents found. Create one to get started!</p>
+              <Button 
+                onClick={() => setIsModalOpen(true)} 
+                className="h-11 text-base cursor-pointer px-6"
+              >
+                <Plus className="mr-2 h-5 w-5" />
+                Create Incident
+              </Button>
             </div>
           ) : (
             <>
