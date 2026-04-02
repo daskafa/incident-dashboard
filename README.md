@@ -64,3 +64,38 @@ Pages → Components → API Client → Backend
     WebSocket Hook
 ```
 
+## Kullanılan Teknolojiler
+
+### Backend
+- **NestJS**: Node.js framework
+- **TypeScript**: Type-safe development
+- **Socket.IO**: WebSocket real-time communication
+- **Winston**: Logging
+
+### Frontend
+- **Next.js 15**: React framework
+- **TypeScript**: Type-safe development
+- **shadcn/ui**: UI components
+- **Socket.IO Client**: Real-time updates
+
+### Infrastructure
+- **Docker**: Containerization
+- **PostgreSQL**: Database
+
+## Varsayımlar
+
+- Incident ID'leri UUID formatında otomatik oluşturulur
+- Pagination default değerleri: page=1, limit=10
+- WebSocket bağlantısı tüm kullanıcılara broadcast yapar
+
+## Daha Fazla Zaman Olsaydı
+
+- **AI Implementasyonu**: Incident önceliklendirme ve otomatik kategorizasyon
+- **Swagger/OpenAPI**: API dokümantasyonu
+- **Unit ve Integration Testler**: Kapsamlı test coverage
+- **Seed Data Mekanizması**: Development ve test için örnek veriler
+- **Optimistic UI Update**: Daha hızlı kullanıcı deneyimi
+- **Soft Delete**: Veri kaybını önleme
+- **Audit Log**: Değişiklik geçmişi takibi
+- **WebSocket Reconnect**: Otomatik bağlantı yenileme
+
